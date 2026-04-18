@@ -1,0 +1,111 @@
+import os
+import time
+import sys
+import random
+import socket
+
+# إعداد ألوان الهيبة (Cyberpunk Style)
+C = '\033[1;36m'  # سماوي
+M = '\033[1;35m'  # أرجواني
+G = '\033[1;32m'  # أخضر
+R = '\033[1;31m'  # أحمر
+W = '\033[1;37m'  # أبيض
+Y = '\033[1;33m'  # أصفر
+RESET = '\033[0m'
+
+def banner():
+    os.system('clear' if os.name == 'posix' else 'cls')
+    # شعار NullSec و Vortex x Kruzz مع فن الإعصار
+    print(f"""{M}
+    _   __      _  _  ██████  ███████  ██████ 
+   | \ | |    | || | ██      ██      ██      
+   |  \| |    | || | ▀█████  █████   ██      
+   | . ` |    | || |     ██  ██      ██      
+   |_| \_|    |_||_| ██████  ███████  ██████ 
+    {W}         [ SYSTEM STATUS: {G}GOD MODE ACTIVE {W}]
+    {C}------------------------------------------------------------
+    {W}                     NULLSEC ELITE
+    {C}              Vortex {W}x {C}Kruzz {W}Project
+    {C}                      .   .
+    {C}                    .  \ /  .
+    {C}                     \  V  /
+    {C}                      > <   {W}(THE CYCLONE)
+    {C}                     /  ^  \\
+    {C}                    '  / \  '
+    {C}------------------------------------------------------------
+    {W}Developers: {C}Vortex & Kruzz {W}| Team: {M}NullSec {W}| Ver: {G}4.0{RESET}""")
+
+def control_room():
+    banner()
+    print(f"{R}--- [ ONLINE VICTIMS / الأجهزة المتصلة ] ---{W}")
+    # محاكاة ذكية للأجهزة التي ضغطت على الرابط
+    victims = ["192.168.1.15 (Android 14)", "172.20.10.4 (iPhone 15 Pro)", "10.0.0.5 (Windows 11)"]
+    for i, v in enumerate(victims, 1):
+        print(f"{G}[{i}] {W}Target Device: {C}{v}")
+    
+    print(f"\n{R}[0] Back to Menu")
+    target = input(f"\n{M}NullSec@Select_Target:~$ {W}")
+    
+    if target != '0':
+        banner()
+        print(f"{R}--- [ CONTROLLING TARGET {target} ] ---{W}")
+        print(f"{C}[1] Screen Mirroring (بث مباشر)")
+        print(f"{C}[2] Data Siphon (سحب كافة الملفات)")
+        print(f"{C}[3] Audio/Mic Spy (تجسس صوتي)")
+        print(f"{C}[4] System Format (فرمتة شاملة)")
+        print(f"{C}[5] Remote Shutdown (إطفاء الجهاز)")
+        print(f"{R}[0] Terminate Connection")
+        action = input(f"\n{M}NullSec@Action:~$ {W}")
+        if action != '0':
+            print(f"{Y}[*] Sending Payload... Bypassing Security..."); time.sleep(2)
+            print(f"{G}[✓] Command Executed Successfully on Target!"); time.sleep(1.5)
+
+def call_bomber():
+    banner()
+    print(f"{C}--- [ ADMIN CALL BOMBER / اتصالات مزعجة ] ---{W}")
+    phone = input(f"{Y}[?] Enter Phone Number (+964...): {W}")
+    print(f"{G}[*] Connecting to US VoIP Servers via Vortex-Tunnel...")
+    time.sleep(2)
+    print(f"{R}[!] Initiating continuous calls from random US numbers...")
+    for i in range(5):
+        print(f"{Y}[+] Attack Wave {i+1}: Calling from +1 (555) {random.randint(100,999)}-{random.randint(1000,9999)}")
+        time.sleep(0.5)
+    print(f"{G}[✓] Bomber is running in the background.")
+    input(f"\n{W}Press Enter to return...")
+
+def payload_gen():
+    banner()
+    print(f"{C}[+] SELECT ATTACK VECTOR (PAYLOAD):{W}")
+    print(f"{G}[1] Android System Disabler")
+    print(f"{G}[2] Spy-Link (Camera & Location)")
+    print(f"{G}[3] Data Wiper (Format Payload)")
+    print(f"{G}[4] Persistent Remote Access (RAT)")
+    print(f"{C}------------------------------------------------------------")
+    input(f"{M}NullSec@Payload:~$ {W}")
+    print(f"{Y}[*] Obfuscating Script... Generating Encoded QR Code..."); time.sleep(2)
+    print(f"{G}[✓] Final Package Ready: {W}NullSec_Vortex_Kruzz.zip")
+    time.sleep(1.5)
+
+def main():
+    while True:
+        banner()
+        print(f"{C}[1] QR/Link Payload Gen      {C}[6] Advanced BruteForce")
+        print(f"{C}[2] Phishing Center         {C}[7] DDoS Attack Engine")
+        print(f"{C}[3] System Freezer          {C}[8] IP/GPS Tracker")
+        print(f"{C}[4] Network Port Scanner    {C}[9] ADMIN CALL BOMBER")
+        print(f"{C}[5] CONTROL ROOM (V&K)      {C}[10] Shutdown System")
+        print(f"{C}------------------------------------------------------------")
+        
+        choice = input(f"\n{M}NullSec@Vortex_Kruzz:~$ {W}")
+
+        if choice == '1': payload_gen()
+        elif choice == '5': control_room()
+        elif choice == '9': call_bomber()
+        elif choice == '10': 
+            print(f"{R}[!] Goodbye, Vortex & Kruzz."); sys.exit()
+        else:
+            print(f"{Y}[*] Accessing Module {choice}..."); time.sleep(1)
+
+if __name__ == "__main__":
+    main()
+
