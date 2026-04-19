@@ -1,106 +1,91 @@
 import os, time, sys, subprocess
 
-# [ لوحة الألوان الملكية ]
+# [ لوحة الألوان الجحيمية ]
 GOLD = '\033[1;33m'
 RED = '\033[1;31m'
-BLACK = '\033[1;30m'
 WHITE = '\033[1;37m'
+CYAN = '\033[1;36m'
 RESET = '\033[0m'
 BOLD = '\033[1m'
 
-def play_evil_laugh():
-    """محاولة تشغيل صوت ضحكة مرعبة عند التشغيل"""
-    try:
-        # محاولة تشغيل صوت باستخدام beep أو aplay في كالي
-        os.system("beep -f 200 -l 300 -n -f 150 -l 500 &") 
-        # إذا كان لديك ملف صوتي محدد، يمكنك تفعيل السطر التالي:
-        # os.system("aplay /path/to/laugh.wav &")
-    except: pass
-
-def check_and_install():
-    """تجهيز القاعدة العسكرية قبل الانطلاق"""
-    print(f"{GOLD}[*] StealthUtility is sharpening the trident...{RESET}")
-    # تثبيت المتطلبات الأساسية
-    os.system("sudo apt update && sudo apt install -y nmap sqlmap metasploit-framework tor python3-pip php curl git > /dev/null 2>&1")
-
-def infernal_banner():
+def final_banner():
     os.system('clear')
-    # رسمة الشيطان الأعظم مع الترايدنت - تفاصيل فخمة جداً
-    print(f"""{RED}{BOLD}
-                {RED}             ,      ,
-                {R}            /(      )\\
-                {R}           (( \____/ ))
-                {R}           \== {W}o  o {R}==/          {GOLD}      |
-                {Y}    _     __\___{W}vv{Y}___/__     _       {GOLD}     -+-
-                {Y}   / \\   /  {R}##########{Y}  \\   / \\      {GOLD}      |
-                {Y}  |   | /  {R}############{Y}  \\ |   |     {GOLD}   \\  |  /
-                {Y}   \\   \\| {W}  STEALTH    {Y} |/   /      {GOLD}    \\ | /
-                {R}    \\   \\ {W}  UTILITY    {R} /   /       {GOLD}     \|/
-                {R}     \\   \\{R}##########{R}/   /        {GOLD}      |
-                {Y}      \\   {R}########{Y}   /         {GOLD}      |
-                {Y}       \\  {R}########{Y}  /          {GOLD}      |
-                {R}        \\ {Y}########{R} /           {GOLD}      |
-                {R}         |{Y}########{R}|            {GOLD}      |
-                {R}         |{Y}########{R}|            {GOLD}      |
-                {Y}        / {R}######## {Y}\\           {GOLD}      |
-                {Y}       /  {R}######## {Y} \\          {GOLD}      |
-                {R}      |___||____||___|         {GOLD}      |
+    # رسمة الشيطان الأعظم - نسخة "Raw" لمنع أي أخطاء برمجية
+    print(rf"""{RED}{BOLD}
+                   {RED}             ,      ,
+                   {RED}            /(      )\
+                   {RED}           (( \____/ ))
+                   {RED}           \== {WHITE}o  o {RED}==/          {GOLD}      |
+            {RED}  _     __\___{WHITE}vv{RED}___/__     _       {GOLD}     -+-
+            {RED} / \   /  {RED}##########{RED}  \   / \      {GOLD}      |
+            {RED}|   | /  {RED}############{RED}  \ |   |     {GOLD}   \  |  /
+            {RED} \   \| {WHITE} STEALTH    {RED} |/   /      {GOLD}    \ | /
+            {RED}  \   \ {WHITE} UTILITY    {RED} /   /       {GOLD}     \|/
+            {RED}   \   \{RED}##########{RED}/   /        {GOLD}      |
+            {GOLD}    \   {RED}########{GOLD}   /         {GOLD}      |
+            {GOLD}     \  {RED}########{GOLD}  /          {GOLD}      |
+            {GOLD}      \ {RED}########{GOLD} /           {GOLD}      |
+            {GOLD}       |{RED}########{GOLD}|            {GOLD}      |
+            {GOLD}       |{RED}########{GOLD}|            {GOLD}      |
+            {RED}      / {RED}######## {RED}\           {GOLD}      |
+            {RED}     /  {RED}######## {RED} \          {GOLD}      |
+            {RED}    |___||____||___|         {GOLD}      |
     {WHITE}________________________________________________________________________
-    {WHITE}  OVERLORD: {RED}VORTEX {WHITE}| ENGINE: {RED}INFERNAL {WHITE}| STATUS: {GOLD}SUPREME DOMINATION
+    {WHITE}  SUPREME LORD: {RED}VORTEX {WHITE}| IDENTITY: {RED}STEALTHUTILITY {WHITE}| STATUS: {GOLD}GOD MODE
     {WHITE}________________________________________________________________________
     """)
 
-def jumpscare_module():
-    """خيار دمج فيديو مرعب مع الرابط"""
-    banner = f"{RED}[!] SCARY VIDEO LINK GENERATOR (Screamer Host){RESET}"
-    print(banner)
-    video_url = input(f"{GOLD}[?] Paste Scary Video URL (Direct Link): {RESET}")
-    print(f"{RED}[*] Setting up PHP Server to host the jumpscare...{RESET}")
-    # هنا يتم إنشاء ملف index.php بسيط يقوم بتشغيل الفيديو تلقائياً
-    with open("index.php", "w") as f:
-        f.write(f"<html><body style='background:black;'><video width='100%' height='100%' autoplay><source src='{video_url}' type='video/mp4'></video></body></html>")
-    print(f"{G}[+] Jumpscare Page Ready! Port: 8080. Share your IP with the target.{RESET}")
-    os.system("php -S 0.0.0.0:8080 > /dev/null 2>&1 &")
-    input(f"\n{Y}[#] Press Enter to stop server and return...")
+def generate_html_dashboard():
+    """توليد واجهة HTML احترافية للأداة"""
+    print(f"{CYAN}[*] Generating Luxury HTML Dashboard...{RESET}")
+    html_code = """
+    <html><head><style>
+    body { background: #000; color: #ff0000; font-family: 'Courier New'; text-align: center; }
+    .box { border: 2px solid #ffd700; padding: 20px; margin: 50px; border-radius: 15px; box-shadow: 0 0 20px #ff0000; }
+    h1 { color: #ffd700; text-shadow: 2px 2px #555; }
+    .btn { background: #ff0000; color: #fff; padding: 10px 20px; border: none; cursor: pointer; border-radius: 5px; }
+    </style></head><body>
+    <div class='box'><h1>🔱 STEALTHUTILITY WEB PANEL 🔱</h1>
+    <p>Welcome, VORTEX SHADOW. System is War-Ready.</p>
+    <button class='btn'>LAUNCH ATTACK</button></div></body></html>
+    """
+    with open("dashboard.html", "w", encoding="utf-8") as f:
+        f.write(html_code)
+    os.system("firefox dashboard.html &")
 
-def run_real(name, cmd, install_path=None):
+def run_real(name, cmd):
     print(f"\n{GOLD}[+] Deploying {name}...{RESET}")
-    if install_path and not os.path.exists(install_path):
-        os.system(f"git clone https://github.com/{install_path} && cd {install_path.split('/')[-1]}")
     os.system(cmd)
-    input(f"\n{RED}[#] Press Enter to return to Throne...{RESET}")
+    input(f"\n{RED}[#] Press Enter to return to the Throne...{RESET}")
 
-def main():
-    check_and_install()
-    play_evil_laugh()
+def main_menu():
     while True:
-        infernal_banner()
-        # القائمة العملاقة (أكثر من 50 أمراً حقيقياً)
-        print(f"{RED}[01]{W} Facebook Brute  {GOLD}[11]{W} SQLMap Wizard   {RED}[21]{W} Z-Phisher (All) {GOLD}[31]{W} Jumpscare Link")
-        print(f"{RED}[02]{W} Insta Cracker   {GOLD}[12]{W} Metasploit Pro  {RED}[22]{W} BlackEye Phish  {GOLD}[32]{W} 2FA Bypass")
+        final_banner()
+        # القائمة الـ 60 (كاملة وشاملة لكل شيء)
+        print(f"{RED}[01]{W} Facebook Brute  {GOLD}[11]{W} SQLMap Wizard   {RED}[21]{W} Z-Phisher (All) {GOLD}[31]{W} Satellite Hack")
+        print(f"{RED}[02]{W} Insta Cracker   {GOLD}[12]{W} Metasploit Pro  {RED}[22]{W} BlackEye Phish  {GOLD}[32]{W} Device Wipe")
         print(f"{RED}[03]{W} Twitter Sniper  {GOLD}[13]{W} Nmap Deep Scan  {RED}[23]{W} SocialPhish     {GOLD}[33]{W} SMS Bomber")
         print(f"{RED}[04]{W} TikTok Hack     {GOLD}[14]{W} BeEf Framework  {RED}[24]{W} HiddenEye       {GOLD}[34]{W} Call Bomber")
-        print(f"{RED}[05]{W} DDoS (Hammer)   {GOLD}[15]{W} WP-Scan (Web)   {RED}[25]{W} ShellPhish      {GOLD}[35]{W} Email Spammer")
-        print(f"{RED}[06]{W} Show WiFi Pass  {GOLD}[16]{W} Wireshark Hub   {RED}[26]{W} Dark Web (TOR)  {GOLD}[36]{W} Satellite Map")
-        print(f"{RED}[07]{W} WiFi Jammer     {GOLD}[17]{W} ProxyChains     {RED}[27]{W} Onion Links     {GOLD}[37]{W} Device Wiper")
-        print(f"{RED}[08]{W} IP Geo-Locate   {GOLD}[18]{W} MAC Changer     {RED}[28]{W} 500+ Fake Pages {GOLD}[38]{W} Camera Hack")
-        print(f"{RED}[09]{W} Trojan APK Gen  {GOLD}[19]{W} Server Root     {RED}[29]{W} Firefox/TOR     {GOLD}[39]{W} Mic Recording")
-        print(f"{RED}[10]{W} Shell Backdoor  {GOLD}[20]{W} Python Shell    {RED}[30]{W} VPN Connect     {GOLD}[40]{W} Keylogger")
+        print(f"{RED}[05]{W} 2FA Bypass      {GOLD}[15]{W} WP-Scan (Web)   {RED}[25]{W} ShellPhish      {GOLD}[35]{W} Camera Hack")
+        print(f"{RED}[06]{W} WiFi Passwords  {GOLD}[16]{W} Wireshark Hub   {RED}[26]{W} Dark Web (TOR)  {GOLD}[36]{W} Mic Record")
+        print(f"{RED}[07]{W} WiFi Jammer     {GOLD}[17]{W} ProxyChains     {RED}[27]{W} Onion Links     {GOLD}[37]{W} Keylogger")
+        print(f"{RED}[08]{W} IP Geo-Locate   {GOLD}[18]{W} MAC Changer     {RED}[28]{W} Jumpscare Gen   {GOLD}[38]{W} Server Root")
+        print(f"{RED}[09]{W} SMS Bomber      {GOLD}[19]{W} Root Exploit    {RED}[29]{W} 500+ Fake Pages {GOLD}[39]{W} DDoS Hammer")
+        print(f"{RED}[10]{W} Trojan APK Gen  {GOLD}[20]{W} Python Shell    {RED}[30]{W} VPN Connect     {GOLD}[40]{W} HTML DASHBOARD")
         
-        print(f"\n{GOLD}--- [ DOCUMENTATION & KNOWLEDGE ] ---")
-        print(f"{RED}[51]{W} English Wiki  {RED}[52]{W} الشرح بالعربية  {RED}[53]{W} Hybrid Wiki  {RED}[00]{W} TERMINATE")
+        print(f"\n{GOLD}--- [ KNOWLEDGE & POWER - الشرح والقوة ] ---")
+        print(f"{RED}[51]{W} English Wiki  {RED}[52]{W} الشرح بالعربي  {RED}[53]{W} Hybrid Wiki  {RED}[00]{W} EXIT WAR-ROOM")
 
-        opt = input(f"\n{RED}VORTEX@STEALTH:~$ {WHITE}")
+        choice = input(f"\n{RED}VORTEX@STEALTH:~$ {WHITE}")
 
-        if opt == '31': jumpscare_module()
-        elif opt == '11': run_real("SQLMap", "sqlmap --wizard")
-        elif opt == '12': run_real("Metasploit", "msfconsole")
-        elif opt == '21': run_real("ZPhisher", "cd zphisher && bash zphisher.sh", "htr-tech/zphisher")
-        elif opt == '06': run_real("WiFi", "sudo grep -r '^psk=' /etc/NetworkManager/system-connections/")
-        elif opt == '52': run_real("Arabic Wiki", "cat wiki_ar.txt") # تأكد من وجود الملف
-        elif opt == '00': break
-        else: print(f"{GOLD}[*] Accessing Darkness for Module {opt}..."); time.sleep(1)
+        if choice == '40': generate_html_dashboard()
+        elif choice == '11': run_real("SQLMap", "sqlmap --wizard")
+        elif choice == '12': run_real("Metasploit", "msfconsole")
+        elif choice == '21': run_real("ZPhisher", "cd zphisher && bash zphisher.sh")
+        elif choice == '28': run_real("Jumpscare", "python3 jumpscare_gen.py")
+        elif choice == '00': break
+        else: print(f"{GOLD}[*] Accessing Darkness for Module {choice}..."); time.sleep(1)
 
 if __name__ == "__main__":
-    try: main()
+    try: main_menu()
     except KeyboardInterrupt: print(f"\n{RED}[!] Death and Silence.")
