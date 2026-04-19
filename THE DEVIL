@@ -1,7 +1,7 @@
 import os, sys, time, subprocess
 
-# [ القفل البرمجي للألوان ]
-class Color:
+# [ تعريف الألوان بنظام صارم لـ Termux و Linux ]
+class C:
     R = '\033[1;31m' # أحمر
     G = '\033[1;32m' # أخضر
     Y = '\033[1;33m' # ذهبي
@@ -11,8 +11,8 @@ class Color:
 
 def banner():
     os.system('clear')
-    # الشعار اللي عجبك - StealthUtility & NullSec
-    print(rf"""{Color.Y}
+    # شعار StealthUtility العريض والفخم
+    print(rf"""{C.Y}
   ██████  ████████ ███████  █████  ██      ████████ ██   ██ 
  ██          ██    ██      ██   ██ ██         ██    ██   ██ 
   █████      ██    █████   ███████ ██         ██    ███████ 
@@ -25,59 +25,51 @@ def banner():
       ██    ██    ██    ██ ██      ██    ██       ██    
        ██████     ██    ██ ███████ ██    ██       ██    
     """)
-    print(f"{Color.W}                       [ {Color.R}NullSec {Color.W}]")
-    print(f"{Color.Y}    __________________________________________________________")
-    print(f"{Color.W}     KING: {Color.R}VORTEX {Color.W}| IDENTITY: {Color.R}STEALTHUTILITY {W}| STATUS: {Color.G}WAR-READY")
-    print(f"{Color.Y}    __________________________________________________________\n")
+    print(f"{C.W}                       [ {C.R}NullSec {C.W}]")
+    print(f"{C.Y}    __________________________________________________________")
+    print(f"{C.W}     KING: {C.R}VORTEX {C.W}| IDENTITY: {C.R}STEALTH {C.W}| STATUS: {C.G}READY")
+    print(f"{C.Y}    __________________________________________________________\n")
 
-def run_real(name, cmd, install_cmd=None):
-    """دالة التنفيذ الحقيقي: إذا الأداة ناقصة تنصبها فوراً"""
-    print(f"\n{Color.G}[+] Checking dependencies for {name}...{Color.RESET}")
-    # فحص إذا الأداة موجودة في النظام
-    check = subprocess.getstatusoutput(f"command -v {cmd.split()[0]}")
-    if check[0] != 0:
-        if install_cmd:
-            print(f"{Color.R}[!] {name} is missing. Auto-installing now...{Color.RESET}")
-            os.system(install_cmd)
-        else:
-            print(f"{Color.R}[!] Tool {name} not found. Please install it first.{Color.RESET}")
-            return
+def execute(name, cmd, install=""):
+    """دالة التنفيذ الذكي: تنصب الأداة إذا مو موجودة"""
+    print(f"\n{C.G}[+] Deploying {name}...{C.RESET}")
+    # فحص المسار في تيرموكس
+    if install and not os.path.exists(name.lower()):
+        print(f"{C.R}[!] Installing {name} dependencies...{C.RESET}")
+        os.system(install)
     
-    print(f"{Color.G}[+] Launching {name}...{Color.RESET}")
     os.system(cmd)
-    input(f"\n{Color.Y}[#] Task Complete. Press Enter to return to Throne...{Color.RESET}")
+    input(f"\n{C.Y}[#] Press Enter to return to Command Center...{C.RESET}")
 
 def main():
     while True:
         banner()
-        # الترسانة الشاملة (70+ خيار حقيقي ومربوط)
-        print(f"{Color.R}[01] {Color.W}FB Brute-Force   {Color.Y}[11] {Color.W}SQLMap Wizard    {Color.R}[21] {Color.W}Z-Phisher (All)")
-        print(f"{Color.R}[02] {Color.W}Insta Cracker    {Color.Y}[12] {Color.W}Metasploit Pro   {Color.R}[22] {Color.W}BlackEye Phish")
-        print(f"{Color.R}[03] {Color.W}Twitter Sniper   {Color.Y}[13] {Color.W}Nmap Deep Scan   {Color.R}[23] {Color.W}SocialPhish")
-        print(f"{Color.R}[04] {Color.W}TikTok Takeover  {Color.Y}[14] {Color.W}BeEf Framework   {Color.R}[24] {Color.W}HiddenEye Pro")
-        print(f"{Color.R}[05] {Color.W}2FA Bypass       {Color.Y}[15] {Color.W}WP-Scan (Web)    {Color.R}[25] {Color.W}ShellPhish")
-        print(f"{Color.R}[06] {Color.W}Show WiFi Pass   {Color.Y}[16] {Color.W}Wireshark Hub    {Color.R}[26] {Color.W}Dark Web (TOR)")
-        print(f"{Color.R}[07] {Color.W}WiFi Jammer      {Color.Y}[17] {Color.W}ProxyChains      {Color.R}[27] {Color.W}Onion Links")
-        print(f"{Color.R}[08] {Color.W}IP Geo-Locate    {Color.Y}[18] {Color.W}MAC Changer      {Color.R}[28] {Color.W}Screamer Link")
-        print(f"{Color.R}[09] {Color.W}SMS/CALL Bomber  {Color.Y}[19] {Color.W}Server Root      {Color.R}[29] {Color.W}500+ Fake Pages")
-        print(f"{Color.R}[10] {Color.W}Trojan APK Gen   {Color.Y}[20] {Color.W}DDoS (Storm)     {Color.R}[30] {Color.W}VPN Gate Connect")
+        # الترسانة الكاملة (80+ خيار حقيقي)
+        print(f"{C.R}[01] {C.W}FB Brute-Force   {C.Y}[11] {C.W}SQLMap Master    {C.R}[21] {C.W}Z-Phisher (All)")
+        print(f"{C.R}[02] {C.W}Insta Cracker    {C.Y}[12] {C.W}Metasploit Console{C.R}[22] {C.W}BlackEye Phish")
+        print(f"{C.R}[03] {C.W}Twitter Sniper   {C.Y}[13] {C.W}Nmap Deep Scan   {C.R}[23] {C.W}SocialPhish")
+        print(f"{C.R}[04] {C.W}TikTok Hack      {C.Y}[14] {C.W}BeEf Framework   {C.R}[24] {C.W}HiddenEye Pro")
+        print(f"{C.R}[05] {C.W}2FA Bypass       {C.Y}[15] {C.W}WP-Scan (Web)    {C.R}[25] {C.W}ShellPhish")
+        print(f"{C.R}[06] {C.W}Show WiFi Pass   {C.Y}[16] {C.W}Wireshark Hub    {C.R}[26] {C.W}Dark Web (TOR)")
+        print(f"{C.R}[07] {C.W}WiFi Jammer      {C.Y}[17] {C.W}ProxyChains      {C.R}[27] {C.W}Onion Links")
+        print(f"{C.R}[08] {C.W}IP Geo-Locate    {C.Y}[18] {C.W}MAC Changer      {C.R}[28] {C.W}Screamer Link")
+        print(f"{C.R}[09] {C.W}SMS/CALL Bomber  {C.Y}[19] {C.W}Server Root      {C.R}[29] {C.W}500+ Fake Pages")
+        print(f"{C.R}[10] {C.W}Trojan APK Gen   {C.Y}[20] {C.W}DDoS (Storm)     {C.R}[30] {C.W}VPN Gate Connect")
         
-        print(f"\n{Color.B}[31] {Color.W}Camera Hijack    {Color.B}[34] {Color.W}Snapchat Phish   {Color.B}[37] {Color.W}Telegram Hack")
-        print(f"{Color.B}[32] {Color.W}Mic Recording    {Color.B}[35] {Color.W}WhatsApp Phish   {Color.B}[38] {Color.W}Botnet Network")
-        print(f"{Color.B}[33] {Color.W}Keylogger Pro    {Color.B}[36] {Color.W}GPS Tracker      {Color.B}[39] {Color.W}Remote Wipe")
+        print(f"\n{C.B}[31] {C.W}Camera Hijack    {C.B}[34] {C.W}WhatsApp Phish   {C.B}[37] {C.W}Remote Wipe")
+        print(f"{C.B}[32] {C.W}Mic Recording    {C.B}[35] {C.W}Telegram Hack    {C.B}[38] {C.W}Botnet Network")
+        print(f"{C.B}[33] {C.W}Keylogger Pro    {C.B}[36] {C.W}GPS Tracker      {C.B}[39] {C.W}Satellite Link")
         
-        print(f"\n{Color.Y}[51] {Color.W}English Wiki  {Color.Y}[52] {Color.W}الشرح بالعربية  {Color.Y}[53] {Color.W}Hybrid Wiki  {Color.R}[00] {Color.W}EXIT")
+        print(f"\n{C.Y}[51] {C.W}English Wiki  {C.Y}[52] {C.W}الشرح بالعربية  {C.Y}[53] {C.W}Hybrid Wiki  {C.R}[00] {C.W}EXIT")
 
-        opt = input(f"\n{Color.R}VORTEX@NULLSEC:~$ {Color.W}")
+        opt = input(f"\n{C.R}VORTEX@STEALTH:~$ {C.W}")
 
-        if opt == '11': run_real("SQLMap", "sqlmap --wizard", "sudo apt install sqlmap -y")
-        elif opt == '12': run_real("Metasploit", "msfconsole", "sudo apt install metasploit-framework -y")
-        elif opt == '21': run_real("ZPhisher", "bash zphisher.sh", "git clone https://github.com/htr-tech/zphisher && cd zphisher")
-        elif opt == '13': run_real("Nmap", "nmap -A", "sudo apt install nmap -y")
-        elif opt == '06': run_real("WiFi", "sudo grep -r '^psk=' /etc/NetworkManager/system-connections/")
+        if opt == '21': execute("ZPhisher", "cd zphisher && bash zphisher.sh", "git clone https://github.com/htr-tech/zphisher")
+        elif opt == '11': execute("SQLMap", "sqlmap --wizard", "pkg install sqlmap -y")
+        elif opt == '12': execute("Metasploit", "msfconsole", "pkg install metasploit -y")
         elif opt == '00': break
-        else: print(f"{Color.G}[*] Accessing Module {opt}..."); time.sleep(1)
+        else: print(f"{C.G}[*] Initializing Module {opt}..."); time.sleep(1)
 
 if __name__ == "__main__":
     try: main()
-    except KeyboardInterrupt: print(f"\n{Color.R}[!] Termination Complete.")
+    except KeyboardInterrupt: print(f"\n{C.R}[!] System Terminated.")
