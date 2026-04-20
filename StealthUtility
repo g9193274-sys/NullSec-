@@ -9,99 +9,99 @@ import sys
 import subprocess
 import time
 import threading
-import random
-import json
-import base64
-import hashlib
-import socket
-import requests
-import re
-import signal
-import shutil
-import platform
-import uuid
-import getpass
-import argparse
-import logging
-import traceback
-import ipaddress
-import urllib.parse
-import http.client
-import email.utils
-import mimetypes
-import pathlib
-import tempfile
-from datetime import datetime
+استيراد عشوائي
+استيراد json
+استيراد base64
+استيراد مكتبة hashlib
+استيراد مقبس
+طلبات الاستيراد
+استيراد​
+إشارة الاستيراد
+استيراد شوتيل
+منصة الاستيراد
+استيراد uuid
+استيراد getpass
+استيراد argparse
+استيراد التسجيل
+استيراد تتبع الأخطاء
+استيراد عنوان IP
+استيراد urllib.parse
+استيراد http.client
+استيراد email.utils
+استيراد أنواع الملفات
+استيراد مكتبة المسار
+استيراد ملف مؤقت
+من datetime استورد datetime
 from collections import OrderedDict
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
-from typing import Dict, List, Tuple, Optional, Any
+من مكتبة typing استورد Dict، List، Tuple، Optional، Any
 
 # ============================================================
-# SYSTEM DETECTION & SMART INSTALLER (THREADED)
+# كشف النظام والمثبت الذكي (مُسنّن)
 # ============================================================
 
-class SystemDetector:
-    def __init__(self):
-        self.is_termux = False
-        self.is_kali = False
-        self.is_root = False
-        self.package_manager = "apt-get"
-        self.detect()
+فئة كاشف النظام:
+    def  __init__ ( self ) :
+        self.is_termux = False​
+        self.is_kali = False​
+        self.is_root = False​
+        self.package_manager = "apt-get "
+        self.detect ( )​
         
-    def detect(self):
-        """Detect OS and environment"""
-        # Check Termux
-        if os.path.exists('/data/data/com.termux/files/home'):
-            self.is_termux = True
-            self.package_manager = "pkg"
-        # Check Kali
-        elif os.path.exists('/etc/kali-release'):
-            self.is_kali = True
-            self.package_manager = "apt-get"
-        # Check root
-        self.is_root = (os.geteuid() == 0)
+    def  detect ( self ) :
+        """الكشف عن نظام التشغيل والبيئة"""
+        تحقق من Termux
+        إذا كان المسار os.path.exists ( ' /data/data/com.termux/files/home ' ) :
+            self.is_termux = True​
+            self.package_manager = "pkg "
+        تحقق من كالي
+        elif os.path.exists ( '/etc/kali - release ' ) :
+            self.is_kali = True​
+            self.package_manager = "apt-get "
+        سأتحقق من صلاحيات الجذر
+        self.is_root = ( os.geteuid ( ) == 0 )​​
         
-    def get_home(self):
-        if self.is_termux:
-            return "/data/data/com.termux/files/home"
-        return os.path.expanduser("~")
+    دالة  get_home ( self ) :
+        إذا كان self.is_termux :
+            return  "/data/data/com.termux/files/home"
+        return os.path.expanduser ( " ~ " )​
         
-    def get_sdcard(self):
-        if self.is_termux:
-            return "/sdcard"
-        return f"{self.get_home()}/storage"
+    دالة  get_sdcard ( self ) :
+        إذا كان self.is_termux :
+            أعد  "/sdcard"
+        return  f" { self. get_home ( ) } /storage"
 
-system = SystemDetector()
+النظام = كاشف النظام ( )
 
 # ============================================================
-# THREADED DEPENDENCY INSTALLER (NO FREEZE)
+# مُثبِّت التبعيات المترابطة (بدون تجميد)
 # ============================================================
 
-class ThreadedInstaller:
-    def __init__(self):
-        self.installed = set()
-        self.lock = threading.Lock()
+فئة ThreadedInstaller:
+    def  __init__ ( self ) :
+        self.installed = set ( )​
+        self.lock = threading.Lock ( )​
         
-    def install_python_package(self, package):
-        """Install Python package in background thread"""
-        try:
-            __import__(package)
-            with self.lock:
-                self.installed.add(package)
-            return True
-        except ImportError:
-            print(f"\033[93m[!] Installing {package}...\033[0m")
-            try:
-                subprocess.run(f"pip install {package} --quiet", shell=True, timeout=30)
-                with self.lock:
-                    self.installed.add(package)
-                return True
-            except:
-                return False
+    def  install_python_package ( self, package ) :
+        """تثبيت حزمة بايثون في سلسلة عمليات خلفية"""
+        يحاول :
+            __import__ ( package )
+            مع القفل الذاتي :
+                self.installed.add ( package )​​​
+            إرجاع  صحيح
+        باستثناء خطأ الاستيراد:
+            print ( f"\033[93m[!] تثبيت { package } ...\033[0m" )
+            يحاول :
+                subprocess.run ( f "pip install { package } --quiet" , shell= True , timeout= 30 )
+                مع القفل الذاتي :
+                    self.installed.add ( package )​​​
+                إرجاع  صحيح
+            يستثني :
+                إرجاع  خطأ
                 
-    def install_system_package(self, package):
-        """Install system package"""
-        try:
+    def  install_system_package ( self, package ) :
+        """تثبيت حزمة النظام"""
+        يحاول :
             subprocess.run(f"{system.package_manager} install {package} -y", shell=True, timeout=60)
             return True
         except:
